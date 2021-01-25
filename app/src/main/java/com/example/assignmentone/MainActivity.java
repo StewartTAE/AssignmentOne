@@ -5,9 +5,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.TextView;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
@@ -22,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AutoCompleteTextView areaDropdown;
     private AutoCompleteTextView stateDropdown;
+    private TextInputLayout birthday;
+    private TextView birthdayText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,35 @@ public class MainActivity extends AppCompatActivity {
                 states
         );
         stateDropdown.setAdapter(stateAdapter);
+
+        // Adding date Picker
+        MaterialDatePicker.Builder builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("Select Your Date Of Birth");
+        final MaterialDatePicker materialDatePicker = builder.build();
+
+        // Making End Icon Clickable
+
+        birthday = findViewById(R.id.birthday_field);
+        birthday.setEndIconOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                materialDatePicker.show(getSupportFragmentManager(), "DATE_PICKER");
+            }
+        });
+
+        // Setting value to text field
+        birthdayText = findViewById(R.id.birthday_text);
+
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                birthdayText.setText((Integer) selection);
+            }
+        });
+
+
+
+
+
 
 
 
