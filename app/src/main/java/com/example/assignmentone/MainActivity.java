@@ -31,7 +31,7 @@ import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    private User user;
     private AutoCompleteTextView areaDropdown;
     private AutoCompleteTextView stateDropdown;
     private TextInputLayout birthday;
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public ArrayList<String> getInput(){
+    public void getInput(){
         EditText nameText = findViewById(R.id.name_text);
         EditText phoneText = findViewById(R.id.phone_text);
         EditText addressText = findViewById(R.id.address_text);
@@ -127,7 +127,11 @@ public class MainActivity extends AppCompatActivity {
         String email = emailText.getText().toString();
         String birthday = birthdayText.getText().toString();
 
+        user = new User(name, phone, area, address, city, state, zip, email, birthday);
+
+        userData.clear();
         userData.addAll(Arrays.asList(name, phone, area, address, city, state, zip, email, birthday));
-        return userData;
+
+
     };
 }
