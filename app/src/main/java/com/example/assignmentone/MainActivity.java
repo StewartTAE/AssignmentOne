@@ -101,9 +101,9 @@ public class MainActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getInput();
-                Intent i = new Intent(getApplicationContext(), InformationView.class);
-                i.putStringArrayListExtra("data", userData);
+                //getInput();
+                Intent i = new Intent(getApplicationContext(), Recycler.class);
+                //i.putStringArrayListExtra("data", userData);
                 startActivity(i);
             }
         });

@@ -4,18 +4,18 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
 
 import java.util.ArrayList;
+import java.util.List;
 
-/*@Dao
-public interface userDao {
+@Dao
+public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public void insertUser(...args);
+    void insertUser(User user);
 
-    @Insert
-    public void insertUser(... args);
+    @Query("SELECT * FROM USER ORDER BY name")
+    List<User> loadAllPerson();
 
-    @Delete
-    public void removeUser(...args);
+
 }
-*/
